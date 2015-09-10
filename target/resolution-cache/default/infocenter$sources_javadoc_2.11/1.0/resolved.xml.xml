@@ -4,7 +4,7 @@
 		module="infocenter$sources_javadoc_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20150910113345"
+		publication="20150910140143"
 	/>
 	<configurations>
 		<conf name="compile" visibility="public" description=""/>
