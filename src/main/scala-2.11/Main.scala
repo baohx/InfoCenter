@@ -4,9 +4,12 @@
 import akka.actor.{PoisonPill, ActorSystem, Props, Actor}
 import scala.io.Source
 import java.net.URLEncoder
+import java.io.File
 class Client extends Actor {
   import Receptionist._
-  val fileName = "D:\\ScalaProject\\InfoCenter\\src\\main\\scala-2.11\\NewsTheme.txt"
+  val path = new File("").getAbsolutePath
+  val fileName = path + "\\NewsTheme.txt"
+  //val fileName = "D:\\ScalaProject\\InfoCenter\\src\\main\\scala-2.11\\NewsTheme.txt"
   val companyNames = Source.fromFile(fileName, "utf-8").getLines.toList.map(_.replace("\n", ""))
   def receive = {
     case "Start1" =>
