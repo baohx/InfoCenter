@@ -25,7 +25,9 @@ class Receptionist(companyName: String, url: String) extends Actor {
       }
     case "gethtml" =>
       val megaURLMatcher = new Regex( """<div class="txt-box">\s*?<h4>\s*?<a target="_blank" href="(.*?)" .*?>(.*?)</a>\s*?</h4>""", "url", "title")
-      (megaURLMatcher findAllIn Source.fromURL(url, "utf-8").getLines.mkString("") matchData).foreach(x => println(s"Weixin:\t${companyName}\t${x.group("title").replace("<em><!--red_beg-->", "").replace("<!--red_end--></em>","")}\thttp://weixin.sogou.com${x.group("url").replace("&amp;","&")}"))
-
+      //(megaURLMatcher findAllIn Source.fromURL(url, "utf-8").getLines.mkString("") matchData).foreach(x => println(s"Weixin:\t${companyName}\t${x.group("title").replace("<em><!--red_beg-->", "").replace("<!--red_end--></em>","")}\thttp://weixin.sogou.com${x.group("url").replace("&amp;","&")}"))
+      (megaURLMatcher findAllIn Source.fromURL(url, "utf-8").getLines.mkString("") matchData).foreach {
+        x => context.actorOf(GetHtml.props(companyName, x)) ! "analyze"
+      }
   }
 }

@@ -4,7 +4,7 @@
 		module="infocenter$sources_2.11"
 		revision="1.0"
 		status="integration"
-		publication="20150910171050"
+		publication="20150911105940"
 	/>
 	<configurations>
 		<conf name="default" visibility="public" description=""/>
